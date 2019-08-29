@@ -5,6 +5,8 @@
  */
 package uabcscoin;
 
+import view.VLogin;
+
 /**
  *
  * @author jzuniga
@@ -16,6 +18,7 @@ public class UABCSCoin {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VLogin.main(args);
     }
     
 }
