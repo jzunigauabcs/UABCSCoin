@@ -136,7 +136,7 @@ public class VLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String email = this.jtfEmail.getText();
         String password = String.valueOf(this.jpfPassword.getPassword());
-        System.out.println(email + " " + password);
+        System.out.println(email + "" + password);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
