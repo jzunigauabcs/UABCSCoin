@@ -5,7 +5,10 @@
  */
 package uabcscoin;
 
+import controller.CtrlLogin;
+import javafx.scene.shape.VLineTo;
 import view.VLogin;
+
 
 /**
  *
@@ -18,7 +21,9 @@ public class UABCSCoin {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        VLogin.main(args);
+        VLogin view = new VLogin();
+        CtrlLogin controller = new CtrlLogin(view);
+        controller.init();
     }
     
 }
