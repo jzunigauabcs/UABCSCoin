@@ -5,6 +5,9 @@
  */
 package uabcscoin;
 
+import controller.CtrlLogin;
+import view.VLogin;
+
 /**
  *
  * @author jzuniga
@@ -16,6 +19,9 @@ public class UABCSCoin {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VLogin view = new VLogin();
+        CtrlLogin controller = new CtrlLogin(view);
+        controller.init();
     }
     
 }
