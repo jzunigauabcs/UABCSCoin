@@ -8,6 +8,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import model.Usuario;
 import view.VLogin;
 
 /**
@@ -35,8 +36,12 @@ public class CtrlLogin implements ActionListener {
             String user = this.view.jtfEmail.getText();
             String password = String.valueOf(this.view.jpfPassword.getPassword());
             
-            System.out.println("Usuario: " +  user + 
-                    " Password: " + password);
+            Usuario u = Usuario.findByLogin(user, password);
+            if(u != null) {
+                System.out.println("Bienvenido " + u.getNombre());
+            } else {
+                System.out.println("Usuario y contraseña incorrectos");
+            }
         } else if(e.getSource() == this.view.jbtnCancelar)
             System.exit(0);
     }
