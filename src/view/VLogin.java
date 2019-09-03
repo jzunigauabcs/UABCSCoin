@@ -55,7 +55,7 @@ public class VLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel5.setText("Password");
 
-        jbtnCancelar.setBackground(new java.awt.Color(88, 169, 234));
+        jbtnCancelar.setBackground(new java.awt.Color(51, 153, 255));
         jbtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         jbtnCancelar.setText("Registrarse");
         jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
