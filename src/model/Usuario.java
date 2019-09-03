@@ -10,6 +10,8 @@ import DB.DBConnec;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,24 +74,37 @@ public class Usuario {
         this.date = date;
     }
     
-    public static Usuario findByLogin(String email, String password) throws SQLException, ClassNotFoundException {
-        
-        String query = "SELECT * from " + TABLE +" where email = ? and password = sha1(?)";
-        Connection conn = DBConnec.getConnection();
-        PreparedStatement  pstm = conn.prepareStatement(query);
-        pstm.setString(1, email);
-        pstm.setString(2, password);
-        
-        ResultSet rs = pstm.executeQuery();
-        
+    public static Usuario findByLogin(String email, String password) {
         Usuario usuario = null;
-        
-        if(rs.next()) {
-            usuario = new Usuario();
-            usuario.setId(rs.getInt("id"));
-            usuario.setNombre(rs.getString("nombre"));
-            usuario.setApellido(rs.getString("apellido"));
-            usuario.setEmail(rs.getString("email"));
+        Connection conn = null;
+        try {
+            String query = "SELECT * from " + Usuario.TABLE +" WHERE email = ? AND password = sha1(?)";
+            conn = DBConnec.getConnection();
+            PreparedStatement  pstm = conn.prepareStatement(query);
+            pstm.setString(1, email);
+            pstm.setString(2, password);
+            
+            ResultSet rs = pstm.executeQuery();
+            System.out.println(pstm);
+            
+            if(rs.next()) {
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellido(rs.getString("apellido"));
+                usuario.setEmail(rs.getString("email"));
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(conn != null)
+                try {
+                    conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return usuario;
     }

@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author jzuniga
  */
 public class DBConnec {
-    private static final String DB_NAME= "UABCSCOIN?autoRecconect=true&useSSL=false";
+    private static final String DB_NAME= "UABCSCOIN?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
     private static final String BD_USER = "root";
     private static final String DB_PASSWORD = "root";
