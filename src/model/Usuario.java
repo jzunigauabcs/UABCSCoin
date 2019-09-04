@@ -3,7 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model;
+
+import DB.ConnectionManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,6 +25,7 @@ public class Usuario {
     private String email;
     private String password;
     private String fechaNacimiento;
+    private static final String TABLE = "usuario";
 
     public int getId() {
         return id;
@@ -66,14 +76,30 @@ public class Usuario {
     }
     
     public static Usuario findByLogin(String email, String password) {
-        String emailDB = "jzuniga@uabcs.mx";
-        String passwordDB = "123";
         Usuario usuario = null;
-        if(email.equals(emailDB) && password.equals(passwordDB)) {
-            usuario = new Usuario();
-            usuario.setNombre("Juanito");
-            usuario.setApellido("Pérez");
-            usuario.setEmail("jzuniga@uabcs.mx");
+        Connection conn = null;
+        try {
+            conn = ConnectionManager.getConnection();
+            String query = "SELECT * FROM " + TABLE + 
+                    " WHERE email = ? " +
+                    "AND PASSWORD = sha1(?)";
+            PreparedStatement pstm = conn.prepareStatement(query);
+            pstm.setString(1, email);
+            pstm.setString(2, password);
+            ResultSet rs = pstm.executeQuery();
+            
+            if(rs.next()) {
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellido(rs.getString("apellido"));
+                usuario.setEmail("jzuniga@uabcs.mx");
+            }
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usuario;
     }
