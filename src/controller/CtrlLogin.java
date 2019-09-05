@@ -26,21 +26,27 @@ public class CtrlLogin implements ActionListener{
     
     public void init() {
         this.view.jButton1.addActionListener(this);
+        this.view.jButton2.addActionListener(this);
         this.view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.view.setVisible(true);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String email = this.view.jTextField1.getText();
-        String password = String.valueOf(this.view.jPasswordField1.getPassword());
-        Usuario usuario = Usuario.findByLogin(email, password);
-        if(usuario != null) {
-            JOptionPane.showMessageDialog(view, 
-                    "Bienvenido " + usuario.getNombre());
-        } else {
-            JOptionPane.showMessageDialog(view, 
-                    "Usuario y contraseña incorrectos");
+        if(e.getSource() == this.view.jButton1) {
+            String email = this.view.jTextField1.getText();
+            String password = String.valueOf(this.view.jPasswordField1.getPassword());
+            Usuario usuario = Usuario.findByLogin(email, password);
+            if(usuario != null) {
+                JOptionPane.showMessageDialog(view, 
+                        "Bienvenido " + usuario.getNombre());
+            } else {
+                JOptionPane.showMessageDialog(view, 
+                        "Usuario y contraseña incorrectos");
+            }
+        } else if(e.getSource() == this.view.jButton2) {
+            CtrlRegistro registro = new CtrlRegistro();
+            registro.init();
         }
     }
     
