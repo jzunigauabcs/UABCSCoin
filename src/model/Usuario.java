@@ -8,6 +8,7 @@ package model;
 
 import DB.ConnectionManager;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class Usuario {
     private String apellido;
     private String email;
     private String password;
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     private static final String TABLE = "usuario";
 
     public int getId() {
@@ -67,12 +68,12 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFechaNacimiento(java.util.Date fechaNacimiento) {
+        this.fechaNacimiento = new Date(fechaNacimiento.getTime());
     }
     
     public static Usuario findByLogin(String email, String password) {
@@ -102,5 +103,37 @@ public class Usuario {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usuario;
+    }
+    
+    public boolean create() {
+        boolean created = false;
+        Connection conn = null;
+        try {
+            conn = ConnectionManager.getConnection();
+            String query = "INSERT INTO " + TABLE +
+                    "(nombre, apellido, email, password, fecha_nacimiento) " +
+                    "VALUES(?, ?, ?, sha1(?), ?)";
+            PreparedStatement pstm = conn.prepareStatement(query);
+            pstm.setString(1, this.nombre);
+            pstm.setString(2, this.apellido);
+            pstm.setString(3, this.email);
+            pstm.setString(4, this.password);
+            pstm.setDate(5, this.getFechaNacimiento());
+            int row = pstm.executeUpdate();
+            created = row == 1;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return created;
     }
 }
