@@ -35,9 +35,11 @@ public class VLogin extends javax.swing.JFrame {
         jtfEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jpfPassword = new javax.swing.JPasswordField();
-        jbtnCancelar = new javax.swing.JButton();
+        jbtRegistro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("Iniciar sesión");
 
@@ -55,12 +57,11 @@ public class VLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel5.setText("Password");
 
-        jbtnCancelar.setBackground(new java.awt.Color(51, 153, 255));
-        jbtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnCancelar.setText("Registrarse");
-        jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jbtRegistro.setBackground(new java.awt.Color(255, 255, 255));
+        jbtRegistro.setText("Registrarse");
+        jbtRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnCancelarActionPerformed(evt);
+                jbtRegistroActionPerformed(evt);
             }
         });
 
@@ -81,10 +82,10 @@ public class VLogin extends javax.swing.JFrame {
                 .addContainerGap(105, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                    .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                    .addComponent(jbtRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(109, 109, 109))
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,7 +106,7 @@ public class VLogin extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnCancelar)
+                .addComponent(jbtRegistro)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -123,9 +124,9 @@ public class VLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
+    private void jbtRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRegistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnCancelarActionPerformed
+    }//GEN-LAST:event_jbtRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,7 +170,7 @@ public class VLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JButton jbtnCancelar;
+    public javax.swing.JButton jbtRegistro;
     public javax.swing.JPasswordField jpfPassword;
     public javax.swing.JTextField jtfEmail;
     // End of variables declaration//GEN-END:variables

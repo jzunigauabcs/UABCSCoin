@@ -7,6 +7,7 @@ package model;
 
 import java.sql.Connection;
 import DB.DBConnec;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class Usuario {
     private String apellido;
     private String email;
     private String password;
-    private String date;
+    private Date date;
     public static final String TABLE = "usuario";
 
     public int getId() {
@@ -66,12 +67,12 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(java.util.Date date) {
+        this.date = new Date(date.getTime());
     }
     
     public static Usuario findByLogin(String email, String password) {
@@ -107,6 +108,31 @@ public class Usuario {
             }
         }
         return usuario;
+    }
+    
+    public int create() {
+        int created = 0;
+        Connection conn = null;
+        try {
+            conn = DBConnec.getConnection();
+            String query = "INSERT INTO " + TABLE +
+                    "(nombre, apellido, email, password, fecha_nacimiento) " +
+                    "VALUE(?, ?, ?, SHA1(?), ?)";
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setString(1, this.nombre);
+            pst.setString(2, this.apellido);
+            pst.setString(3, this.email);
+            pst.setString(4, this.password);
+            pst.setDate(5, this.date);
+            
+            return pst.executeUpdate();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return created;
     }
     
 }

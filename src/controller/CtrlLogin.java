@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import model.Usuario;
 import view.VLogin;
+import view.VRegistro;
 
 /**
  *
@@ -25,7 +26,7 @@ public class CtrlLogin implements ActionListener {
     
     public void init() {
         this.view.jButton1.addActionListener(this);
-        this.view.jbtnCancelar.addActionListener(this);
+        this.view.jbtRegistro.addActionListener(this);
         this.view.setVisible(true);
         this.view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -42,7 +43,10 @@ public class CtrlLogin implements ActionListener {
             } else {
                 System.out.println("Usuario y contraseña incorrectos");
             }
-        } else if(e.getSource() == this.view.jbtnCancelar)
-            System.exit(0);
+        } else if(e.getSource() == this.view.jbtRegistro) {
+            CtrlRegistro registro = new CtrlRegistro(new VRegistro());
+            registro.init();
+        }
+            
     }
 }
