@@ -6,8 +6,8 @@
             <file>file:/Users/jzuniga/NetBeansProjects/mavenproject2/mavenproject2/UABCSCoin/src/model/Usuario.java</file>
             <file>file:/Users/jzuniga/NetBeansProjects/mavenproject2/mavenproject2/UABCSCoin/src/controller/CtrlLogin.java</file>
             <file>file:/Users/jzuniga/NetBeansProjects/mavenproject2/mavenproject2/UABCSCoin/src/view/VLogin.java</file>
-            <file>file:/Users/jzuniga/NetBeansProjects/mavenproject2/mavenproject2/UABCSCoin/src/uabcscoin/UABCSCoin.java</file>
-            <file>file:/Users/jzuniga/NetBeansProjects/mavenproject2/mavenproject2/UABCSCoin/src/DB/ConnectionManager.java</file>
+            <file>file:/Users/jzuniga/NetBeansProjects/mavenproject2/mavenproject2/UABCSCoin/src/view/VRegister.java</file>
+            <file>file:/Users/jzuniga/NetBeansProjects/mavenproject2/mavenproject2/UABCSCoin/src/controller/CtrlRegistro.java</file>
         </group>
     </open-files>
 </project-private>
